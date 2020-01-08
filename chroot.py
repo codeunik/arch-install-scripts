@@ -20,20 +20,20 @@ exec_cmd("hwclock --systohc")
 
 # localization
 with open('/etc/locale.gen','a') as f:
-    f.write('en_US.UTF-8 UTF-8\nen_US ISO-8859-1')    
+    f.write('en_US.UTF-8 UTF-8\nen_US ISO-8859-1\n')    
 exec_cmd("locale-gen")
 with open('/etc/locale.conf','a') as f:
-    f.write('LANG=en_US.UTF-8')
+    f.write('LANG=en_US.UTF-8\n')
     
 # Network configuration
 with open('/etc/hostname','a') as f:
-    f.write(hostname)
+    f.write(hostname+'\n')
 with open('/etc/hosts','a') as f:
     f.write(
 """
 127.0.0.1	localhost
 ::1		localhost
-127.0.1.1	"""+hostname+""".localdomain	"""+hostname)
+127.0.1.1	"""+hostname+""".localdomain	"""+hostname+'\n')
 
 # Initramfs
 exec_cmd("mkinitcpio -P")
@@ -51,7 +51,6 @@ exec_cmd("EDITOR=nano visudo")
 exec_cmd("cd /tmp")
 exec_cmd("git clone https://aur.archlinux.org/yay.git")
 exec_cmd("cd yay")
-exec_cmd("su "+username)
 exec_cmd("sudo -u "+username+" -i makepkg -si")
 exec_cmd("sudo -u "+username+" -i yay -S"
     # bootloader
@@ -99,7 +98,7 @@ if bootloader == 2:
 else:
     exec_cmd("bootctl --path=/boot install")
     with open("/boot/loader/loader.conf",'w') as f:
-        f.write("default arch\ntimeout 4\nconsole-mode max\neditor no")
+        f.write("default arch\ntimeout 4\nconsole-mode max\neditor no\n")
     root_blkid=os.popen("blkid "+root).read()
     root_uuid=re.search(r".*\ UUID=\"(.*)\"\ TYPE.*",root_blkid).group(1)
     with open("/boot/loader/entries/arch.conf",'w') as f:
@@ -108,6 +107,6 @@ else:
             +"linux   /vmlinuz-linux"
             +"initrd  /"+cpu+"-ucode.img"
             +"initrd  /initramfs-linux.img"
-            +"options root=UUID="+root_uuid+" rw")
+            +"options root=UUID="+root_uuid+" rw\n")
 
 exec_cmd("exit")
