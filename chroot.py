@@ -100,10 +100,10 @@ else:
     root_uuid=re.search(r".*\ UUID=\"(.*)\"\ TYPE.*",root_blkid).group(1)
     with open("/boot/loader/entries/arch.conf",'w') as f:
         f.write(
-            "title   Arch Linux"
-            +"linux   /vmlinuz-linux"
-            +"initrd  /"+cpu+"-ucode.img"
-            +"initrd  /initramfs-linux.img"
+            "title   Arch Linux\n"
+            +"linux   /vmlinuz-linux\n"
+            +"initrd  /"+cpu+"-ucode.img\n"
+            +"initrd  /initramfs-linux.img\n"
             +"options root=UUID="+root_uuid+" rw\n")
 
 exec_cmd("exit")
