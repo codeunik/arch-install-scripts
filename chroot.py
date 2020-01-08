@@ -52,8 +52,8 @@ exec_cmd("cd /tmp")
 exec_cmd("git clone https://aur.archlinux.org/yay.git")
 exec_cmd("cd yay")
 exec_cmd("su "+username)
-exec_cmd("makepkg -si")
-exec_cmd("yay -S"
+exec_cmd("sudo -u "+username+" -i makepkg -si")
+exec_cmd("sudo -u "+username+" -i yay -S"
     # bootloader
     #+" grub efibootmgr"
     # network manager
@@ -61,7 +61,7 @@ exec_cmd("yay -S"
     # console programs
     +" bash-completion gotop ranger p7zip"
     # file sharing
-    +" grsync wget aria2 youtube-dl uget filezilla deluge"
+    +" grsync wget aria2 youtube-dl uget" # filezilla deluge
     # xorg and video drivers
     +" xorg-xinit xorg-server xf86-video-intel xf86-video-ati"
     # de or wm
@@ -72,21 +72,21 @@ exec_cmd("yay -S"
     # file systems
     +" dosfstools mtools mtpfs ntfs-3g autofs"
     # text editors
-    +" nano neovim emacs code atom"
+    +" nano neovim" #emacs code atom
     # web browsers
-    +" w3m firefox chromium google-chrome" #vivaldi
+    +" w3m firefox google-chrome" #vivaldi chromium
     # audio/video players
-    +" mplayer vlc spotify"
+    +" mplayer vlc" #spotify
     # fonts
     +" ttf-inconsolata ttf-fira-mono ttf-fira-code ttf-dejavu ttf-roboto noto-fonts ttf-ubuntu-font-family gnu-free-fonts adobe-source-code-pro-fonts ttf-linux-libertine ttf-ms-win10"
     # graphics tools
-    +" blender krita inkscape gimp obs"
+    #+" blender krita inkscape gimp obs"
     # misc
     +" okular keepassxc gparted"
     # doc tools
     #+" pandoc texlive-most"
     )
-exec_cmd("su")
+
 # fstrim.timer 
 exec_cmd("systemctl enable NetworkManager autofs.services")
 
