@@ -48,17 +48,13 @@ exec_cmd("EDITOR=nano visudo")
 #exec_cmd("sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup")
 #exec_cmd("rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist")
 
-exec_cmd("cd /tmp")
-exec_cmd("git clone https://aur.archlinux.org/yay.git")
-exec_cmd("cd yay")
-exec_cmd("sudo -u "+username+" -i makepkg -si")
-exec_cmd("sudo -u "+username+" -i yay -S"
+exec_cmd("pacman -S"
     # bootloader
     #+" grub efibootmgr"
     # network manager
     +" networkmanager network-manager-applet"
     # console programs
-    +" bash-completion gotop ranger p7zip"
+    +" bash-completion ranger p7zip"
     # file sharing
     +" grsync wget aria2 youtube-dl uget" # filezilla deluge
     # xorg and video drivers
@@ -73,11 +69,11 @@ exec_cmd("sudo -u "+username+" -i yay -S"
     # text editors
     +" nano neovim" #emacs code atom
     # web browsers
-    +" w3m firefox google-chrome" #vivaldi chromium
+    +" w3m firefox" #vivaldi chromium
     # audio/video players
     +" mplayer vlc" #spotify
     # fonts
-    +" ttf-inconsolata ttf-fira-mono ttf-fira-code ttf-dejavu ttf-roboto noto-fonts ttf-ubuntu-font-family gnu-free-fonts adobe-source-code-pro-fonts ttf-linux-libertine ttf-ms-win10"
+    +" ttf-inconsolata ttf-fira-mono ttf-fira-code ttf-dejavu ttf-roboto noto-fonts ttf-ubuntu-font-family gnu-free-fonts adobe-source-code-pro-fonts ttf-linux-libertine"
     # graphics tools
     #+" blender krita inkscape gimp obs"
     # misc
