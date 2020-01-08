@@ -13,10 +13,11 @@ def exec_cmd(cmd):
     print(cmd)
     os.system(cmd)
 
-exec_cmd("pacman -S pacman-contrib") # for rankmirrors
-exec_cmd("cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup")
-exec_cmd("sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup")
-exec_cmd("rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist")
+#exec_cmd("pacman -S pacman-contrib") # for rankmirrors
+#exec_cmd("cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup")
+#exec_cmd("awk '/^## India$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup")
+##exec_cmd("sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup")
+#exec_cmd("rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist")
 
 exec_cmd("timedatectl set-ntp true")
 
@@ -50,3 +51,4 @@ else:
 exec_cmd("mv chroot.py /mnt")
 exec_cmd("arch-chroot /mnt python ./chroot.py")
 exec_cmd("umount -R /mnt")
+exec_cmd("reboot")
