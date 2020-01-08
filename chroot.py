@@ -44,6 +44,10 @@ exec_cmd("useradd -m -g users -G wheel,video,audio,optical,storage,power -s /bin
 exec_cmd("passwd "+username)
 exec_cmd("EDITOR=nano visudo")
 
+exec_cmd("cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup")
+exec_cmd("sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup")
+exec_cmd("rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist")
+
 exec_cmd("cd /tmp")
 exec_cmd("git clone https://aur.archlinux.org/yay.git")
 exec_cmd("cd yay")

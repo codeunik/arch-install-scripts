@@ -13,6 +13,11 @@ def exec_cmd(cmd):
     print(cmd)
     os.system(cmd)
 
+exec_cmd("pacman -S pacman-contrib") # for rankmirrors
+exec_cmd("cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup")
+exec_cmd("sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup")
+exec_cmd("rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist")
+
 exec_cmd("timedatectl set-ntp true")
 
 # format partitions 
@@ -26,7 +31,7 @@ exec_cmd("mount "+home+" /mnt/home")
 exec_cmd("mkdir /mnt/boot")
 exec_cmd("mount "+efi+" /mnt/boot")
 
-exec_cmd("pacstrap -i /mnt base base-devel linux linux linux-firmware python man-db man-pages archlinux-keyring git sudo "+cpu+"-ucode")
+exec_cmd("pacstrap -i /mnt base base-devel linux linux linux-firmware python man-db man-pages archlinux-keyring git sudo  pacman-contrib "+cpu+"-ucode")
 
 # swap
 if swapfile:
