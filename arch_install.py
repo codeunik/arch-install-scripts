@@ -24,6 +24,8 @@ exec_cmd("timedatectl set-ntp true")
 # format partitions 
 exec_cmd("mkfs.fat -F32 "+efi)
 exec_cmd("mkfs.ext4 "+root)
+exec_cmd("mkswap "+swap)
+exec_cmd("swapon "+swap)
 
 # mount partitions
 exec_cmd("mount "+root+" /mnt")
@@ -34,19 +36,15 @@ exec_cmd("mount "+efi+" /mnt/boot")
 exec_cmd("mkdir -p /mnt/var/cache/pacman/pkg/ && cp -r /mnt/home/partha/pkg/* /mnt/var/cache/pacman/pkg/")
 exec_cmd("pacstrap -i /mnt base base-devel linux linux linux-firmware python man-db man-pages archlinux-keyring git sudo  pacman-contrib nano "+cpu+"-ucode")
 
+exec_cmd("genfstab -U /mnt >> /mnt/etc/fstab")
 # swap
 if swapfile:
-    exec_cmd("genfstab -U /mnt >> /mnt/etc/fstab")
     exec_cmd("fallocate -l 4GB /mnt/swapfile")
     exec_cmd("chmod 600 /mnt/swapfile")
     exec_cmd("mkswap /mnt/swapfile")
     exec_cmd("swapon /mnt/swapfile")
     with open('/mnt/etc/fstab','a') as f:
         f.write('\n/swapfile none swap defaults 0 0')
-else:
-    exec_cmd("mkswap "+swap)
-    exec_cmd("swapon "+swap)
-    exec_cmd("genfstab -U /mnt >> /mnt/etc/fstab")
 
 exec_cmd("mv chroot.py /mnt")
 exec_cmd("arch-chroot /mnt python ./chroot.py")
