@@ -47,7 +47,7 @@ exec_cmd("EDITOR=nano visudo")
 exec_cmd("cd /tmp")
 exec_cmd("git clone https://aur.archlinux.org/yay.git")
 exec_cmd("cd yay")
-exec_cmd("makepkg -si")
+exec_cmd("sudo -u nobody makepkg -si")
 exec_cmd("yay -S"
     # bootloader
     #+" grub efibootmgr"

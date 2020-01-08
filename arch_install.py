@@ -26,7 +26,7 @@ exec_cmd("mount "+home+" /mnt/home")
 exec_cmd("mkdir /mnt/boot")
 exec_cmd("mount "+efi+" /mnt/boot")
 
-exec_cmd("pacstrap -i /mnt base base-devel linux linux linux-firmware python man-db man-pages archlinux-keyring git "+cpu+"-ucode")
+exec_cmd("pacstrap -i /mnt base base-devel linux linux linux-firmware python man-db man-pages archlinux-keyring git sudo "+cpu+"-ucode")
 
 # swap
 if swapfile:
