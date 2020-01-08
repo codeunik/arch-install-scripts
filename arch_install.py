@@ -31,7 +31,7 @@ exec_cmd("mkdir /mnt/home")
 exec_cmd("mount "+home+" /mnt/home")
 exec_cmd("mkdir /mnt/boot")
 exec_cmd("mount "+efi+" /mnt/boot")
-
+exec_cmd("mkdir -p /mnt/var/cache/pacman/pkg/ && cp -r /mnt/home/partha/pkg/* /mnt/var/cache/pacman/pkg/")
 exec_cmd("pacstrap -i /mnt base base-devel linux linux linux-firmware python man-db man-pages archlinux-keyring git sudo  pacman-contrib "+cpu+"-ucode")
 
 # swap
