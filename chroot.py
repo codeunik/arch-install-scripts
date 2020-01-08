@@ -44,10 +44,10 @@ exec_cmd("useradd -m -g users -G wheel,video,audio,optical,storage,power -s /bin
 exec_cmd("passwd "+username)
 exec_cmd("EDITOR=nano visudo")
 
-exec_cmd("cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup")
-#exec_cmd("sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup")
-exec_cmd("awk '/^## India$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup")
-exec_cmd("rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist")
+#exec_cmd("cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup")
+##exec_cmd("sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup")
+#exec_cmd("awk '/^## India$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup")
+#exec_cmd("rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist")
 
 exec_cmd("pacman -Syyu"
     # bootloader
