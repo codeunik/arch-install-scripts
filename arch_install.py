@@ -1,13 +1,7 @@
 # create a partition in the disk using "cfdisk /dev/sda" before running the script
 
 import os
-
-efi="/dev/sda1"
-root="/dev/sda2"
-home="/dev/sda3"
-swap="/dev/sda4"
-swapfile=False
-cpu="intel"
+from config import *
 
 def exec_cmd(cmd):
     print(cmd)

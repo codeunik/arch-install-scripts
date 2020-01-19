@@ -1,14 +1,6 @@
 import os
 import re
-
-efi="/dev/sda1"
-root="/dev/sda2"
-home="/dev/sda3"
-swap="/dev/sda4"
-cpu="intel"
-bootloader=1 # 1 for systemd-boot, 2 for GRUB
-hostname='jarvis'
-username='partha'
+from config import *
 
 def exec_cmd(cmd):
     print(cmd)
