@@ -52,7 +52,7 @@ exec_cmd("pacman -Syyu"
     # file sharing
     +" grsync wget aria2 youtube-dl uget" # filezilla deluge
     # xorg and video drivers
-    +" xorg-xinit xorg-server xorg-xbacklight xf86-video-intel xf86-video-ati"
+    +" xorg-xinit xorg-server xorg-xbacklight "+video_drivers
     # de or wm
     #+" bspwm sxhkd feh lightdm lightdm-gtk-greeter xclip rxvt-unicode pcmanfm xarchiver kupfer"
     #+" gnome"
