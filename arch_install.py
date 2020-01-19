@@ -19,6 +19,9 @@ def exec_cmd(cmd):
 ##exec_cmd("sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup")
 #exec_cmd("rankmirrors -n 6 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist")
 
+exec_cmd("pacman -Syy reflector")
+exec_cmd("reflector --latest 20 --country Sweden --country Japan --country India --country \"United States\" --country France --country Germany --age 48 --protocol https --sort rate --save /etc/pacman.d/mirrorlist")
+
 exec_cmd("timedatectl set-ntp true")
 
 # format partitions 
@@ -34,7 +37,7 @@ exec_cmd("mount "+home+" /mnt/home")
 exec_cmd("mkdir /mnt/boot")
 exec_cmd("mount "+efi+" /mnt/boot")
 exec_cmd("mkdir -p /mnt/var/cache/pacman/pkg/ && cp -r /mnt/home/partha/pkg/* /mnt/var/cache/pacman/pkg/")
-exec_cmd("pacstrap -i /mnt base base-devel linux linux linux-firmware python man-db man-pages archlinux-keyring git sudo  pacman-contrib nano "+cpu+"-ucode")
+exec_cmd("pacstrap -i /mnt base base-devel linux linux linux-firmware python man-db man-pages git sudo pacman-contrib nano reflector "+cpu+"-ucode")
 
 exec_cmd("genfstab -U /mnt >> /mnt/etc/fstab")
 # swap

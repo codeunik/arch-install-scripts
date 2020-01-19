@@ -49,6 +49,7 @@ exec_cmd("EDITOR=nano visudo")
 #exec_cmd("awk '/^## India$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup")
 #exec_cmd("rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist")
 
+exec_cmd("reflector --latest 200 --country Sweden --country Japan --country India --country \"United Statess\" --country France --country Germany  --age 48 --protocol https --sort rate --save /etc/pacman.d/mirrorlist")
 exec_cmd("pacman -Syyu"
     # bootloader
     #+" grub efibootmgr"
@@ -59,10 +60,11 @@ exec_cmd("pacman -Syyu"
     # file sharing
     +" grsync wget aria2 youtube-dl uget" # filezilla deluge
     # xorg and video drivers
-    +" xorg-xinit xorg-server xf86-video-intel xf86-video-ati"
+    +" xorg-xinit xorg-server xorg-xbacklight xf86-video-intel xf86-video-ati"
     # de or wm
-    #+" i3 lightdm lightdm-gtk-greeter xclip"
-    +" gnome"
+    #+" bspwm sxhkd feh lightdm lightdm-gtk-greeter xclip rxvt-unicode pcmanfm xarchiver kupfer"
+    #+" gnome"
+    +" xfce4 xfce4-pulseaudio-plugin ristretto lightdm lightdm-gtk-greeter"
     # sound server
     +" pulseaudio pulseaudio-alsa alsa-utils alsa-plugins"
     # file systems
@@ -72,22 +74,23 @@ exec_cmd("pacman -Syyu"
     # web browsers
     +" w3m firefox" #vivaldi chromium
     # audio/video players
-    +" mplayer vlc" #spotify
+    +" mplayer" # vlc spotify
     # fonts
     +" ttf-inconsolata ttf-fira-mono ttf-fira-code ttf-dejavu ttf-roboto noto-fonts ttf-ubuntu-font-family gnu-free-fonts adobe-source-code-pro-fonts ttf-linux-libertine"
     # graphics tools
-    #+" blender krita inkscape gimp obs"
+    +" blender krita inkscape gimp obs-studio"
     # misc
-    +" okular keepassxc gparted"
+    +" keepassxc gparted"
     # doc tools
-    #+" pandoc texlive-most"
+    #+" okular pandoc texlive-most"
+    +" nodejs npm python-pynvim redshift python-virtualenv"
     )
 
 # fstrim.timer 
-exec_cmd("systemctl enable NetworkManager autofs.services")
+exec_cmd("systemctl enable NetworkManager autofs.service avahi-daemon.service")
 
 #lightdm.service
-exec_cmd("systemctl enable gdm")
+exec_cmd("systemctl enable lightdm.service")
 
 if bootloader == 2:
     exec_cmd("grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot")
