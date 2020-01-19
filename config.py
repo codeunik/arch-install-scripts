@@ -4,7 +4,7 @@ home="/dev/sda3"
 swap="/dev/sda4"
 swapfile=False
 cpu="intel"
-bootloader=1 # 1 for systemd-boot, 2 for GRUB
+bootloader="systemd-boot" # 1 for systemd-boot, 2 for grub
 hostname='jarvis'
 username='partha'
 

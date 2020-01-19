@@ -44,6 +44,8 @@ if swapfile:
         f.write('\n/swapfile none swap defaults 0 0')
 
 exec_cmd("mv chroot.py /mnt")
+exec_cmd("mv config.py /mnt")
+exec_cmd("mv aur.py /mnt")
 exec_cmd("arch-chroot /mnt python ./chroot.py")
 exec_cmd("umount -R /mnt")
 exec_cmd("reboot")

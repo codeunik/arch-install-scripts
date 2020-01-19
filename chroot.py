@@ -84,10 +84,10 @@ exec_cmd("systemctl enable NetworkManager autofs.service avahi-daemon.service")
 #lightdm.service
 exec_cmd("systemctl enable lightdm.service")
 
-if bootloader == 2:
+if bootloader == 'grub':
     exec_cmd("grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot")
     exec_cmd("grub-mkconfig -o /boot/grub/grub.cfg")
-else:
+if bootloader == 'systemd-boot':
     exec_cmd("bootctl --path=/boot install")
     with open("/boot/loader/loader.conf",'w') as f:
         f.write("default arch\ntimeout 4\nconsole-mode max\neditor no\n")
