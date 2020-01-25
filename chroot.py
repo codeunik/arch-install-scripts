@@ -50,17 +50,17 @@ exec_cmd("pacman -Syyu"
     # console programs
     +" bash-completion ranger p7zip"
     # file sharing
-    +" grsync wget aria2 youtube-dl uget" # filezilla deluge
+    +" grsync wget aria2 youtube-dl uget" # filezilla deluge python-cairo
     # xorg and video drivers
     +" xorg-xinit xorg-server xorg-xbacklight "+video_drivers
     # de or wm
     #+" bspwm sxhkd feh lightdm lightdm-gtk-greeter xclip rxvt-unicode pcmanfm xarchiver kupfer"
     #+" gnome"
-    +" xfce4 xfce4-pulseaudio-plugin ristretto lightdm lightdm-gtk-greeter"
+    +" xfce4 xfce4-goodies lightdm lightdm-gtk-greeter"
     # sound server
     +" pulseaudio pulseaudio-alsa alsa-utils alsa-plugins"
     # file systems
-    +" dosfstools mtools mtpfs ntfs-3g autofs"
+    +" dosfstools mtools mtpfs ntfs-3g autofs gvfs"
     # text editors
     +" nano neovim" #emacs code atom
     # web browsers
@@ -71,11 +71,10 @@ exec_cmd("pacman -Syyu"
     +" ttf-inconsolata ttf-fira-mono ttf-fira-code ttf-dejavu ttf-roboto noto-fonts ttf-ubuntu-font-family gnu-free-fonts adobe-source-code-pro-fonts ttf-linux-libertine"
     # graphics tools
     +" blender krita inkscape gimp obs-studio"
-    # misc
-    +" keepassxc gparted"
     # doc tools
-    #+" okular pandoc texlive-most"
-    +" nodejs npm python-pynvim redshift python-virtualenv"
+    +"zathura zathura-pdf-poppler zathura-djvu zathura-ps" #okular pandoc texlive-most
+    # misc
+    +" nodejs npm python-pynvim redshift python-virtualenv keepassxc gparted"
     )
 
 # fstrim.timer 

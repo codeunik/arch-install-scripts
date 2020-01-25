@@ -7,4 +7,4 @@ cpu="intel"
 bootloader="systemd-boot" # 1 for systemd-boot, 2 for grub
 hostname='jarvis'
 username='partha'
-video_drivers="xf86-video-intel xf86-video-ati" #nvidia
+video_drivers="xf86-video-intel xf86-video-ati" #nvidia nvidia-settings cuda cudnn
