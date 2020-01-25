@@ -72,7 +72,7 @@ exec_cmd("pacman -Syyu"
     # graphics tools
     +" blender krita inkscape gimp obs-studio"
     # doc tools
-    +"zathura zathura-pdf-poppler zathura-djvu zathura-ps" #okular pandoc texlive-most
+    +" zathura zathura-pdf-poppler zathura-djvu zathura-ps" #okular pandoc texlive-most
     # misc
     +" nodejs npm python-pynvim redshift python-virtualenv keepassxc gparted"
     )
