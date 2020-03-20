@@ -56,7 +56,7 @@ exec_cmd("pacman -Syyu"
     # de or wm
     #+" bspwm sxhkd feh lightdm lightdm-gtk-greeter xclip rxvt-unicode pcmanfm xarchiver kupfer"
     #+" gnome"
-    +" xfce4 xfce4-goodies lightdm lightdm-gtk-greeter"
+    +" xfce4 xfce4-goodies xarchiver lightdm lightdm-gtk-greeter"
     # sound server
     +" pulseaudio pulseaudio-alsa alsa-utils alsa-plugins"
     # file systems
