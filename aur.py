@@ -18,6 +18,4 @@ def aur(pkgs):
 
 
 aur(sys.argv[1:])
-#aur("google-chrome")
-#aur("mathpix-snipping-tool")
-#aur("polybar")
+# google-chrome mathpix-snipping-tool
