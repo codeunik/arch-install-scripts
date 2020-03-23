@@ -1,13 +1,6 @@
-import os
 import re
 
 from config import *
-
-
-def exec_cmd(cmd):
-    print(cmd)
-    os.system(cmd)
-
 
 # time zone setup
 exec_cmd("ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime")
@@ -27,7 +20,7 @@ with open('/etc/hosts', 'a') as f:
     f.write("""
 127.0.0.1	localhost
 ::1		localhost
-127.0.1.1	""" + hostname + """.localdomain	""" + hostname + '\n')
+127.0.1.1	""" + hostname + ".localdomain	" + hostname + '\n')
 
 # Initramfs
 exec_cmd("mkinitcpio -P")
@@ -40,21 +33,12 @@ exec_cmd(
 exec_cmd("passwd " + username)
 exec_cmd("EDITOR=nano visudo")
 
-#exec_cmd("cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup")
-##exec_cmd("sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup")
-#exec_cmd("awk '/^## India$/{f=1; next}f==0{next}/^$/{exit}{print substr($0, 1);}' /etc/pacman.d/mirrorlist.backup")
-#exec_cmd("rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist")
-
 exec_cmd(
     "reflector --latest 200 --country Sweden --country Japan --country India --country \"United Statess\" --country France --country Germany  --age 48 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
 )
-exec_cmd("pacman -Syyu " + " ".join(pkgs))
+exec_cmd("pacman -Syyu " + " ".join(packages))
 
-# fstrim.timer
-exec_cmd("systemctl enable NetworkManager autofs.service avahi-daemon.service")
-
-#lightdm.service
-exec_cmd("systemctl enable lightdm.service")
+exec_cmd("systemctl enable " + " ".join(services))
 
 if bootloader == 'grub':
     exec_cmd(

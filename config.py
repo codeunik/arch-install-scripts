@@ -1,8 +1,19 @@
-efi = "/dev/sda1"
-root = "/dev/sda2"
-home = "/dev/sda3"
+import os
+
+
+def exec_cmd(cmd):
+    n = len(cmd)
+    print("=" * (n + 3))
+    print(cmd)
+    print("=" * (n + 3))
+    os.system(cmd)
+
+
+efi = "/dev/sdb5"
+root = "/dev/sdb6"
+home = "/dev/sda2"
 swap = "/dev/sda4"
-swapfile = False
+swapfile = True
 
 #cpu = "intel"
 cpu = "amd"
@@ -13,14 +24,23 @@ bootloader = "systemd-boot"
 #video_drivers = ["xf86-video-intel", "xf86-video-ati"]
 video_drivers = ["nvidia", "nvidia-settings", "nvidia-utils"]
 
-hostname = 'jarvis'
-username = 'partha'
+hostname = "hal"
+username = "partha"
 
-pkgs = [
+services = [
+    "NetworkManager",
+    "autofs.service",
+    "avahi-daemon.service",
+    "gdm",
+    # "lightdm.service",
+    "fstrim.timer"
+]
+
+packages = [
     # bootloader
     # ==========
-    # "grub",
-    # "efibootmgr",
+    "grub",
+    "efibootmgr",
 
     # network manager
     # ===============
@@ -37,7 +57,7 @@ pkgs = [
     # ==================================
     "grsync",
     "wget",
-    "aria2",
+    # "aria2",
     "youtube-dl",
     "uget",
     "filezilla",
@@ -46,9 +66,10 @@ pkgs = [
 
     # xorg
     # ====
-    "xorg-xinit",
-    "xorg-server",
-    "xorg-xbacklight",
+    "xorg",
+    # "xorg-xinit",
+    # "xorg-server",
+    # "xorg-xbacklight",
 
     # window managers
     # ===============
@@ -81,24 +102,24 @@ pkgs = [
 
     # sound server
     # ============
-    "pulseaudio",
-    "pulseaudio-alsa",
-    "alsa-utils",
-    "alsa-plugins",
+    # "pulseaudio",
+    # "pulseaudio-alsa",
+    # "alsa-utils",
+    # "alsa-plugins",
 
     # file systems
     # ============
     "dosfstools",
     "mtools",
-    "mtpfs",
+    # "mtpfs",
     "ntfs-3g",
     "autofs",
     "gvfs",
 
     # text editors
     # ============
-    "nano",
-    "neovim",
+    # "nano",
+    # "neovim",
     "emacs",
     # "code",
     # "atom",
@@ -131,7 +152,7 @@ pkgs = [
 
     # doc tools
     # =========
-    "texlive-most",
+    # "texlive-most",
     # "pandoc",
     # "zathura", "zathura-pdf-poppler", "zathura-djvu", "zathura-ps",
     # "okular",
@@ -139,10 +160,10 @@ pkgs = [
 
     # misc
     # ====
-    "nodejs",
-    "npm",
-    "python-pynvim",
-    "redshift",
+    # "nodejs",
+    # "npm",
+    # "python-pynvim",
+    # "redshift",
     "python-virtualenv",
     "keepassxc",
     "gparted"
