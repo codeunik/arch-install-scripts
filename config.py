@@ -33,7 +33,7 @@ services = [
     "avahi-daemon.service",
     "gdm",
     # "lightdm.service",
-    "fstrim.timer"
+    "fstrim.timer",
 ]
 
 packages = [
