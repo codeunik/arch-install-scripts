@@ -34,7 +34,7 @@ exec_cmd("passwd " + username)
 exec_cmd("EDITOR=nano visudo")
 
 exec_cmd(
-    "reflector --latest 200 --country Sweden --country Japan --country India --country \"United Statess\" --country France --country Germany  --age 48 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
+    "reflector --latest 200 --country Sweden --country Japan --country India --country \"United States\" --country France --country Germany  --age 48 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
 )
 exec_cmd("pacman -Syyu " + " ".join(packages))
 
@@ -56,5 +56,10 @@ if bootloader == 'systemd-boot':
                 "initrd  /" + cpu + "-ucode.img\n" +
                 "initrd  /initramfs-linux.img\n" + "options root=UUID=" +
                 root_uuid + " rw\n")
+
+if will_reinstall:
+    exec_cmd(
+        "mkdir -p /home/partha/pkg/ && cp -r /var/cache/pacman/pkg/* /home/partha/pkg/"
+    )
 
 exec_cmd("exit")

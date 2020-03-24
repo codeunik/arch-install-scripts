@@ -2,26 +2,27 @@ import os
 
 
 def exec_cmd(cmd):
-    n = len(cmd)
-    print("=" * (n + 3))
-    print(cmd)
-    print("=" * (n + 3))
+    print("\n" + cmd + "\n")
     os.system(cmd)
 
 
+will_reinstall = False
+reinstalling = False
+format_home = False
 efi = "/dev/sdb5"
 root = "/dev/sdb6"
 home = "/dev/sda2"
 swap = "/dev/sda4"
 swapfile = True
+swapsize = 16  # GB
 
-#cpu = "intel"
+# cpu = "intel"
 cpu = "amd"
 
-bootloader = "systemd-boot"
-#bootloader = "grub"
+# bootloader = "systemd-boot"
+bootloader = "grub"
 
-#video_drivers = ["xf86-video-intel", "xf86-video-ati"]
+# video_drivers = ["xf86-video-intel", "xf86-video-ati"]
 video_drivers = ["nvidia", "nvidia-settings", "nvidia-utils"]
 
 hostname = "hal"

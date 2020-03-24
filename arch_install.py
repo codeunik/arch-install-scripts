@@ -12,6 +12,8 @@ exec_cmd("timedatectl set-ntp true")
 # format partitions
 exec_cmd("mkfs.fat -F32 " + efi)
 exec_cmd("mkfs.ext4 " + root)
+if format_home:
+    exec_cmd("mkfs.ext4 " + home)
 if not swapfile:
     exec_cmd("mkswap " + swap)
     exec_cmd("swapon " + swap)
@@ -22,9 +24,12 @@ exec_cmd("mkdir /mnt/home")
 exec_cmd("mount " + home + " /mnt/home")
 exec_cmd("mkdir /mnt/boot")
 exec_cmd("mount " + efi + " /mnt/boot")
-# exec_cmd(
-#     "mkdir -p /mnt/var/cache/pacman/pkg/ && cp -r /mnt/home/partha/pkg/* /mnt/var/cache/pacman/pkg/"
-# )
+
+if reinstalling:
+    exec_cmd(
+        "mkdir -p /mnt/var/cache/pacman/pkg/ && cp -r /mnt/home/partha/pkg/* /mnt/var/cache/pacman/pkg/"
+    )
+
 exec_cmd(
     "pacstrap -i /mnt base base-devel linux linux-firmware linux-headers python man-db man-pages git sudo pacman-contrib nano reflector "
     + cpu + "-ucode")
@@ -32,7 +37,7 @@ exec_cmd(
 exec_cmd("genfstab -U /mnt >> /mnt/etc/fstab")
 # swap
 if swapfile:
-    exec_cmd("fallocate -l 4GB /mnt/swapfile")
+    exec_cmd("fallocate -l {}GB /mnt/swapfile".format(swapsize))
     exec_cmd("chmod 600 /mnt/swapfile")
     exec_cmd("mkswap /mnt/swapfile")
     exec_cmd("swapon /mnt/swapfile")
