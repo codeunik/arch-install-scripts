@@ -42,7 +42,7 @@ exec_cmd("systemctl enable " + " ".join(services))
 
 if bootloader == 'grub':
     exec_cmd(
-        "grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot"
+        "grub-install --target=x86_64-efi --bootloader-id=GRUB --efi-directory=/boot/efi"
     )
     exec_cmd("grub-mkconfig -o /boot/grub/grub.cfg")
 if bootloader == 'systemd-boot':
@@ -50,7 +50,7 @@ if bootloader == 'systemd-boot':
     with open("/boot/loader/loader.conf", 'w') as f:
         f.write("default arch\ntimeout 4\nconsole-mode max\neditor no\n")
     root_blkid = os.popen("blkid " + root).read()
-    root_uuid = re.search(r".*\ UUID=\"(.*)\"\ TYPE.*", root_blkid).group(1)
+    root_uuid = re.search(r".*UUID=\"(.*?)\"\ .*", root_blkid).group(1)
     with open("/boot/loader/entries/arch.conf", 'w') as f:
         f.write("title   Arch Linux\n" + "linux   /vmlinuz-linux\n" +
                 "initrd  /" + cpu + "-ucode.img\n" +
