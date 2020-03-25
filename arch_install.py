@@ -22,8 +22,8 @@ if not swapfile:
 exec_cmd("mount " + root + " /mnt")
 exec_cmd("mkdir /mnt/home")
 exec_cmd("mount " + home + " /mnt/home")
-exec_cmd("mkdir /mnt/boot")
-exec_cmd("mount " + efi + " /mnt/boot")
+exec_cmd("mkdir -p /mnt/boot/efi")
+exec_cmd("mount " + efi + " /mnt/boot/efi")
 
 if reinstalling:
     exec_cmd(
