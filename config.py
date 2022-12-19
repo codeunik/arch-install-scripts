@@ -1,6 +1,5 @@
 import os
 
-
 def exec_cmd(cmd):
     print("\n" + cmd + "\n")
     os.system(cmd)
